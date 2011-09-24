@@ -1,0 +1,15 @@
+USER WORKFLOW
+-------------
+What is the common workflow when responding to an apartment listing? 
+
+	1. Find a listing on Craigslist
+	2. Email the person who posted the listing with some basic biographic
+		information about yourself (e.g. name, age, occupation, habits, etc.)
+	3. Wait for reply and possibly schedule a viewing.
+
+A SHORT LIST OF POSSIBLE FEATURES TO IMPLEMENT
+----------------------------------------------
+
+> Craiglist introduction email generator. (API: web/email/sms)
+> GCal sync of all appointments scheduled
+> Facebook integration for populating the email template

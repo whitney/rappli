@@ -1,3 +1,12 @@
-*.swp
+<<<<<<< HEAD
 /tmp
 /eclipse
+=======
+*.swp
+<<<<<<< HEAD
+/tmp
+/eclipse
+=======
+tmp/**/* 
+>>>>>>> heroku
+>>>>>>> ae9a2b5fe7c2b506d7999f3b8b37e5c6402ce130
