@@ -9,14 +9,13 @@ import play.db.jpa.Model;
 public class User extends Model {
      
     public String email;
-    public String password;
-    public String fullname;
-    public boolean isAdmin;
+    public String first_name;
+    public String last_name;
     
-    public User(String email, String password, String fullname) {
+    public User(String email, String first_name, String last_name) {
         this.email = email;
-        this.password = password;
-        this.fullname = fullname;
+        this.first_name = first_name;
+        this.last_name = last_name;
     }
 
     // inverse side of the relation
