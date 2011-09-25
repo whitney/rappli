@@ -13,3 +13,13 @@ A SHORT LIST OF POSSIBLE FEATURES TO IMPLEMENT
 > Craiglist introduction email generator. (API: web/email/sms)
 > GCal sync of all appointments scheduled
 > Facebook integration for populating the email template
+
+> Chrome-extension: Float an icon on the end of each listing. Users can select
+		those which appear promising, and add them to a "feed". Once they have
+		finished selecting, they click to open a new tab which is populated with a
+		pre-formated collection of listings. 
+			* Pre-render the listing HTML and cache it. Serve it up when they click
+					"view".
+
+As you navigate listings, an icon floats next to each
+		listing that looks promising. You can then add it 
