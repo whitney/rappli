@@ -1,15 +1,5 @@
 /tmp
 /eclipse
-<<<<<<< HEAD
+/external
 *.pyc
-=======
-=======
 *.swp
-<<<<<<< HEAD
-/tmp
-/eclipse
-=======
-tmp/**/* 
->>>>>>> heroku
->>>>>>> ae9a2b5fe7c2b506d7999f3b8b37e5c6402ce130
->>>>>>> ba451c2726f5b6754593dac1c922bf4ca9f69e4a

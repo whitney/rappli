@@ -1,3 +1,6 @@
+p.rapplified:hover
+	{ background: #d6d6d6; }
+
 div.rappli-helper span.state 
 	{ width: 5px; height: 10px; margin-right: 10px; display: inline-block; }
 
