@@ -1,0 +1,5 @@
+div.rappli-helper span.state 
+	{ width: 5px; height: 10px; margin-right: 10px; display: inline-block; }
+
+div.rappli-helper span.state .selected
+	{ border-style: solid; border-width: 0 3px 3px 0; border-color: #87b95d; -webkit-transform: rotate(45deg); }
