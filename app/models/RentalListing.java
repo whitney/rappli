@@ -5,7 +5,7 @@ import javax.persistence.*;
 import play.db.jpa.Model;
 
 @Entity
-@Table(name = "`rental_listings`")
+@Table(name="`rental_listings`")
 public class RentalListing extends Model {
      
     public String url;

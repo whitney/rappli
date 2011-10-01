@@ -5,15 +5,17 @@ import javax.persistence.*;
 import play.db.jpa.Model;
 
 @Entity
-@Table(name = "`users`")
+@Table(name="`users`")
 public class User extends Model {
      
-	@Id
-	@Column(name="id")
-	public long id;
+	//@Id
+	//@Column(name="id")
+	//public long id;
     public String email;
-    public String first_name;
-    public String last_name;
+	@Column(name="first_name")
+    public String firstName;
+	@Column(name="last_name")
+    public String lastName;
 	/*
 	@ManyToMany
 	@JoinTable(name="users_listings",
@@ -22,9 +24,9 @@ public class User extends Model {
 	private List<RentalListing> rentalListings;
 	*/
     
-    public User(String email, String first_name, String last_name) {
+    public User(String email, String firstName, String lastName) {
         this.email = email;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 }
