@@ -1,0 +1,50 @@
+{
+	"name": "Rapply",
+	"version": "1.0",
+	"description": "Help you find and manage apartment listings.",
+	"background_page": "rapply.html",
+	"browser_action": {
+	},
+	"permissions": [
+		"tabs",
+		"http://*.craigslist.org/*"
+	],
+	"content_scripts": [
+	{
+		"matches": [
+			"http://*.craigslist.org/search/roo*", 
+			"http://*.craigslist.org/search/sub*", 
+			"http://*.craigslist.org/search/hsw*", 
+			"http://*.craigslist.org/search/swp*", 
+			"http://*.craigslist.org/search/vac*",
+			"http://*.craigslist.org/search/prk*",
+			"http://*.craigslist.org/search/off*",
+			"http://*.craigslist.org/search/rea*",
+			"http://*.craigslist.org/search/aap*",
+			"http://*.craigslist.org/search/abo*",
+			"http://*.craigslist.org/search/nfb*",
+			"http://*.craigslist.org/search/fee*",
+			"http://*.craigslist.org/search/nfa*",
+			"http://*.craigslist.org/search/aiv*",
+
+			"http://*.craigslist.org/roo/*", 
+			"http://*.craigslist.org/sub/*", 
+			"http://*.craigslist.org/hsw/*", 
+			"http://*.craigslist.org/swp/*", 
+			"http://*.craigslist.org/vac/*",
+			"http://*.craigslist.org/prk/*",
+			"http://*.craigslist.org/off/*",
+			"http://*.craigslist.org/rea/*",
+			"http://*.craigslist.org/aap/*",
+			"http://*.craigslist.org/abo/*",
+			"http://*.craigslist.org/nfb/*",
+			"http://*.craigslist.org/fee/*",
+			"http://*.craigslist.org/nfa/*",
+			"http://*.craigslist.org/aiv/*"
+		],
+		"js": ["jquery-1.6.4.min.js", "chrome-rapply.js"],
+		"css": ["chrome-rapply.css"]
+	}]
+	
+}
+

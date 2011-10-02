@@ -1,5 +1,8 @@
 /tmp
 /eclipse
-/external
+external
 *.pyc
 *.swp
+.classpath
+.project
+.settings/
