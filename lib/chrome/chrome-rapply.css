@@ -1,8 +1,14 @@
+div.rapply-widget
+	{ float: right; }
+
+div.rapply-widget a 
+	{ text-decoration: none; }
+
 p.rapplified:hover
 	{ background: #d6d6d6; }
 
-div.rappli-helper span.state 
+div.rapply-widget span.state 
 	{ width: 5px; height: 10px; margin-right: 10px; display: inline-block; }
 
-div.rappli-helper span.state .selected
+div.rapply-widget span.state .selected
 	{ border-style: solid; border-width: 0 3px 3px 0; border-color: #87b95d; -webkit-transform: rotate(45deg); }

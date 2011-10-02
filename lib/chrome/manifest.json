@@ -42,7 +42,7 @@
 			"http://*.craigslist.org/nfa/*",
 			"http://*.craigslist.org/aiv/*"
 		],
-		"js": ["chrome-rapply.js"],
+		"js": ["jquery-1.6.4.min.js", "chrome-rapply.js"],
 		"css": ["chrome-rapply.css"]
 	}]
 	
