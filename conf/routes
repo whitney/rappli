@@ -11,11 +11,20 @@ GET     /favicon.ico                            404
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
 
-# Catch all
-*       /{controller}/{action}                  {controller}.{action}
 
 # Import Secure routes
 *      /										module:secure
 
-# Post Craigslist URL
-POST   /craigslist                              Craigslist.processListing
+# Catch all
+#*       /{controller}/{action}                  {controller}.{action}
+
+# Post a listing
+POST   /craigslist/listings                    Craigslist.queueListing
+
+# Delete a listing
+DELETE /craigslist/listings                    Craigslist.dequeueListing
+
+# Get the full digest
+GET    /craigslist/listings                    Craigslist.createDigest
+
+

@@ -7,7 +7,10 @@
 	},
 	"permissions": [
 		"tabs",
-		"http://*.craigslist.org/*"
+		"notifications",
+		"unlimitedStorage",
+		"http://*.craigslist.org*", 
+		"http://localhost:9000/crg/*"
 	],
 	"content_scripts": [
 	{
@@ -40,7 +43,22 @@
 			"http://*.craigslist.org/nfb/*",
 			"http://*.craigslist.org/fee/*",
 			"http://*.craigslist.org/nfa/*",
-			"http://*.craigslist.org/aiv/*"
+			"http://*.craigslist.org/aiv/*",
+
+			"http://*.craigslist.org/*roo*", 
+			"http://*.craigslist.org/*sub*", 
+			"http://*.craigslist.org/*hsw*", 
+			"http://*.craigslist.org/*swp*", 
+			"http://*.craigslist.org/*vac*",
+			"http://*.craigslist.org/*prk*",
+			"http://*.craigslist.org/*off*",
+			"http://*.craigslist.org/*rea*",
+			"http://*.craigslist.org/*aap*",
+			"http://*.craigslist.org/*abo*",
+			"http://*.craigslist.org/*nfb*",
+			"http://*.craigslist.org/*fee*",
+			"http://*.craigslist.org/*nfa*",
+			"http://*.craigslist.org/*aiv*"
 		],
 		"js": ["jquery-1.6.4.min.js", "chrome-rapply.js"],
 		"css": ["chrome-rapply.css"]

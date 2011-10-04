@@ -1,5 +1,18 @@
 <script>
 	(function () {
+		chrome.extension.onConnect.addListener(function(port) {
+			console.assert(port.name == "rapply");
+			port.onMessage.addListener(function(msg) {
+				if (msg.action === "newTab") {
+					var tabOptions = {
+						url: "http://localhost:9000/digest"
+					};
+					chrome.tabs.create(tabOptions, function () {
+					});
+				});
+			});
+		});
+	});
 
 	})();
 </script>

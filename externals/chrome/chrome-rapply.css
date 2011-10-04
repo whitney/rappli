@@ -10,5 +10,5 @@ p.rapplified:hover
 div.rapply-widget span.state 
 	{ width: 5px; height: 10px; margin-right: 10px; display: inline-block; }
 
-div.rapply-widget span.state .selected
+p.item-queued div.rapply-widget span.state
 	{ border-style: solid; border-width: 0 3px 3px 0; border-color: #87b95d; -webkit-transform: rotate(45deg); }
