@@ -5,7 +5,15 @@ import models.User;
 public class Security extends Secure.Security {
 	
     static boolean authenticate(String email, String password) {
-    	return User.connect(email, password) != null;
+    	User user = User.connect(email, password);
+    	if (user != null) {
+    		session.put("userId", String.valueOf(user.id));
+    		return true;
+    	}
+    	return false;
     }
     
+    static void onDisconnected() {
+        session.remove("userId");
+    }
 }
