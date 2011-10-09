@@ -23,4 +23,9 @@ public class RentalListing extends Model {
         this.html = html;
         this.userListings = new ArrayList<UserListing>();
     }
+    
+    @Override
+    public String toString() {
+    	return url + " " + html;
+    }
 }

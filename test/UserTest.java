@@ -26,6 +26,17 @@ public class UserTest extends UnitTest {
 	}
 	
 	@Test
+	public void testAuth() {
+	    // Create a new user and save it
+	    new User("bill@gmail.com", "Bill", "Zoller", "bsswd", true).save();
+	    
+	    // Test 
+	    assertNotNull(User.connect("bill@gmail.com", "bsswd"));
+	    assertNull(User.connect("bill@gmail.com", "badpassword"));
+	    assertNull(User.connect("tom@gmail.com", "bsswd"));
+	}
+	
+	@Test
 	public void testUserListingRelation() {
 	    // Create a new user and save it
 	    User bob = new User("bob@gmail.com", "Bob", "Zoller", "psswd", true).save();

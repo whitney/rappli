@@ -22,7 +22,7 @@ public class User extends Model {
     @Column
     public boolean activated;
     
-    @OneToMany(mappedBy="user", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	public List<UserListing> listings;
     
     public User(String email, String firstName, String lastName, String password, boolean activated) {
@@ -44,5 +44,22 @@ public class User extends Model {
     	UserListing userListing = new UserListing(this, rentalListing).save();
         this.listings.add(userListing);
         return this;
+    }
+    
+    public static User connect(String email, String candidatePw) {
+    	if (email == null || candidatePw == null)
+    		return null;
+    	User user = find("byEmail", email).first();
+    	if (user == null)
+    		return null;
+    	if (BCrypt.checkpw(candidatePw, user.password))
+    		return user;
+    	else
+    		return null;
+    }
+    
+    @Override
+    public String toString() {
+    	return email + " " + password;
     }
 }
