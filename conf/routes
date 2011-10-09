@@ -5,6 +5,9 @@
 # Home page
 GET     /                                       Application.index
 
+GET /signup										Users.signup
+POST /signup									Users.signupForm
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 
@@ -15,8 +18,6 @@ GET     /public/                                staticDir:public
 # Import Secure routes
 *      /										module:secure
 
-# Catch all
-#*       /{controller}/{action}                  {controller}.{action}
 
 # Post a listing
 POST   /craigslist/listings                    Craigslist.queueListing
@@ -27,4 +28,6 @@ DELETE /craigslist/listings                    Craigslist.dequeueListing
 # Get the full digest
 GET    /craigslist/listings                    Craigslist.createDigest
 
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}
 

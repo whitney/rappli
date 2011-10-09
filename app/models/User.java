@@ -10,10 +10,10 @@ public class User extends Model {
     @Column 
     public String email;
 	
-    @Column(name="first_name")
+    @Column(name = "first_name")
     public String firstName;
 	
-    @Column(name="last_name")
+    @Column(name = "last_name")
     public String lastName;
 	
     @Column
@@ -21,6 +21,9 @@ public class User extends Model {
     
     @Column
     public boolean activated;
+    
+    @Column(name = "email_token")
+    public String emailToken;
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	public List<UserListing> listings;
@@ -34,9 +37,10 @@ public class User extends Model {
         this.listings = new ArrayList<UserListing>();
     }
     
-    public User(String email) {
+    public User(String email, String emailToken) {
         this.email = email;
         this.activated = false;
+        this.emailToken = emailToken;
         this.listings = new ArrayList<UserListing>();
     }
     
