@@ -3,6 +3,8 @@
 external
 *.pyc
 *.swp
+*.rdb
 .classpath
 .project
 .settings/
+test-result/
