@@ -6,7 +6,9 @@
 GET     /                                       Application.index
 
 GET /signup										Users.signup
-POST /signup									Users.signupForm
+POST /signup									Users.signupHandler
+GET /activate									Users.activate
+POST /activate									Users.activateHandler
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

@@ -37,11 +37,17 @@ public class Users extends Application {
     	}
 	}
 	
-	public static void activation() {
+	public static void activate() {
 		render();
 	}
 	
-	public static void activationHandler() {
-		// TODO
+	public static void activateHandler(String email, String emailToken) {
+		User user = User.find("byEmailAndEmailToken", email, emailToken).first();
+		if (user == null) {
+			// deal with some shits
+		} else {
+			// render signup completion form
+			render("Users/accountComplete.html", user);
+		}
 	}
 }
