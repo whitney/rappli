@@ -1,10 +1,16 @@
 import org.junit.*;
+
 import java.util.*;
 import play.test.*;
 import models.RentalListing;
 
 public class RentalListingTest extends UnitTest {
 
+    @Before
+    public void setup() {
+        Fixtures.deleteAllModels();
+    }
+    
 	@Test
 	public void createAndRetrieveRentalListing() {
 		String url = "http://newyork.craigslist.org/brk/abo/2627480745.html";
