@@ -9,11 +9,10 @@ import models.User;
 public class MailManager extends Mailer {
  
 	private static final String SENDER = "Rappli <admin@rappli.com>";
-	//private static final String BASE_URL = "http://localhost:9000";
-	private static final String BASE_URL = Play.configuration.getProperty("application.base_url");
+	private static final String BASE_URL = Play.configuration.getProperty("application.baseUrl");
 	
 	public static void signup(User user) {
-		setSubject("Welcome %s", user.firstName);
+		setSubject("Welcome to Rappli!");
 		addRecipient(user.email);
 		setFrom(SENDER);
 		/*
@@ -22,7 +21,10 @@ public class MailManager extends Mailer {
 		attachment.setPath(Play.getFile("rules.pdf").getPath());
 		addAttachment(attachment);
 		*/
-		send(user);
+		System.out.println(">>>>>>>>>> BASE_URL: " + BASE_URL);
+		System.out.println(">>>>>>>>>> APP MODE: " + Play.configuration.getProperty("application.mode"));
+		String baseUrl = BASE_URL;
+		send(user, baseUrl);
 	}
  
 	public static void resetPassword(User user) {
