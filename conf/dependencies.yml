@@ -7,4 +7,5 @@ require:
     - play -> secure
     - play -> redis 0.2
     - org.jsoup -> jsoup 1.6.1
+    - org.mindrot -> jbcrypt 0.3m
 
