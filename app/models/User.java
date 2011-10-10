@@ -62,6 +62,10 @@ public class User extends Model {
     		return null;
     }
     
+    public void setPassword(String password) {
+    	this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+    
     @Override
     public String toString() {
     	return email + " " + password;

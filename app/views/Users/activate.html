@@ -1,0 +1,12 @@
+<div align="left">
+	<h1>Thanks for signing up! To complete your registration for email address ${user.email}, fill out the form below.</h1>
+	<form method="post" action="/activate">
+		<input type="hidden" name="email" value="${ user.email }" />
+		<input type="hidden" name="emailToken" value="${ user.emailToken }" />
+		<p>password: <input type="password" name="password" /></p>
+		<p>password confirmation: <input type="password" name="passwordConfirmation" /></p>
+		<p>first name: <input type="text" name="firstName" /></p>
+		<p>last name: <input type="text" name="lastName" /></p>
+		<input type="submit" />
+	</form>
+</div>

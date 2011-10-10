@@ -37,17 +37,50 @@ public class Users extends Application {
     	}
 	}
 	
-	public static void activate() {
-		render();
-	}
-	
-	public static void activateHandler(String email, String emailToken) {
+	public static void activate(String email, String emailToken) {
 		User user = User.find("byEmailAndEmailToken", email, emailToken).first();
 		if (user == null) {
-			// deal with some shits
+    		// TODO: put this information in the "flash" to inform the user what to do 
+    		Logger.info("Account cannot be created for email: {}, token: {}", email, emailToken);
+    		render("Users/signup.html");
 		} else {
-			// render signup completion form
-			render("Users/accountComplete.html", user);
+			render(user);
+		}
+	}
+	
+	public static void activateHandler(String email, String emailToken, String password, 
+			String passwordConfirmation, String firstName, String lastName) {
+		User user = User.find("byEmailAndEmailToken", email, emailToken).first();
+		boolean authenticated = false;
+		if (user == null) {
+    		// TODO: put this information in the "flash" to inform the user what to do 
+    		Logger.info("Account cannot be created for email: {}, token: {}", email, emailToken);
+    		render("Users/signup.html");
+		} else if (!password.equals(passwordConfirmation)) {
+    		// TODO: put this information in the "flash" to inform the user what to do 
+			render("Users/activate.html", user);
+		} else if (!EmailValidator.valid(email)) {
+    		// TODO: put this information in the "flash" to inform the user what to do 
+			render("Users/activate.html", user);
+		} else if (firstName.isEmpty() || lastName.isEmpty()) {
+    		// TODO: put this information in the "flash" to inform the user what to do 
+			render("Users/activate.html", user);
+		} else {
+			user.setPassword(password);
+			user.firstName = firstName;
+			user.lastName = lastName;
+			user.activated = true;
+			user.save();
+			authenticated = Security.authenticate(email, password);
+		}
+		
+		if (authenticated) {
+			Logger.info("Account successfully activated!", user);
+			//render("/", user);
+			Home.index(user);
+		} else {
+    		// TODO: put this information in the "flash" to inform the user what to do 
+			render("Users/activate.html", user);
 		}
 	}
 }

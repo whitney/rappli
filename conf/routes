@@ -10,6 +10,8 @@ POST /signup									Users.signupHandler
 GET /activate									Users.activate
 POST /activate									Users.activateHandler
 
+GET /home										Home.index
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

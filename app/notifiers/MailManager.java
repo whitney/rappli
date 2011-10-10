@@ -15,14 +15,6 @@ public class MailManager extends Mailer {
 		setSubject("Welcome to Rappli!");
 		addRecipient(user.email);
 		setFrom(SENDER);
-		/*
-		EmailAttachment attachment = new EmailAttachment();
-		attachment.setDescription("A pdf document");
-		attachment.setPath(Play.getFile("rules.pdf").getPath());
-		addAttachment(attachment);
-		*/
-		System.out.println(">>>>>>>>>> BASE_URL: " + BASE_URL);
-		System.out.println(">>>>>>>>>> APP MODE: " + Play.configuration.getProperty("application.mode"));
 		String baseUrl = BASE_URL;
 		send(user, baseUrl);
 	}
@@ -34,5 +26,19 @@ public class MailManager extends Mailer {
 		addRecipient(user.email);
 		send(user, newpassword);
 	}
+ 
+		
+	/*
+	public static void emailWithAttachment(User user) {
+		setSubject("Welcome to Rappli!");
+		addRecipient(user.email);
+		setFrom(SENDER);
+		EmailAttachment attachment = new EmailAttachment();
+		attachment.setDescription("A pdf document");
+		attachment.setPath(Play.getFile("rules.pdf").getPath());
+		addAttachment(attachment);
+		send(user);
+	}
+	*/
  
 }
