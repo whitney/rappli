@@ -68,6 +68,6 @@ public class User extends Model {
     
     @Override
     public String toString() {
-    	return email + " " + password;
+    	return email + " " + password + " " + activated;
     }
 }

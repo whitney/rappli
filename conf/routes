@@ -3,14 +3,18 @@
 # ~~~~
 
 # Home page
-GET     /                                       Application.index
+#GET     /                                       Application.index
+GET     /                                       Home.index
+GET 	/home									Home.index
 
 GET /signup										Users.signup
 POST /signup									Users.signupHandler
 GET /activate									Users.activate
 POST /activate									Users.activateHandler
 
-GET /home										Home.index
+#GET /login										Security.login
+#POST /login										Security.loginHandler
+#GET /logout										Security.logout
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

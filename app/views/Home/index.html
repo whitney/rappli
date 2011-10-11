@@ -1,2 +1,8 @@
+*{ #{extends 'main.html' /} }*
+*{ #{set title:'Home' /} }*
 <h1>Welcome to your homepage ${user.firstName}!</h1>
-<p>Here are the listings you are currently tracking:</p>
+<form action="http://localhost:9000/craigslist" method="POST">
+	<label for="craigslist-url">Enter a craiglist listing URL:</label>
+	<input type="text" name="url"/>
+	<input type="submit" value="Submit"/>
+</form>
