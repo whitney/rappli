@@ -13,7 +13,7 @@ GET /activate									Users.activate
 POST /activate									Users.activateHandler
 
 #GET /login										Security.login
-#POST /login										Security.loginHandler
+POST /login										Security.login
 #GET /logout										Security.logout
 
 # Ignore favicon requests

@@ -19,6 +19,7 @@ public class MailManager extends Mailer {
 		send(user, baseUrl);
 	}
  
+	/*
 	public static void resetPassword(User user) {
 		String newpassword = user.password;
 		setFrom("Robot <robot@thecompany.com>");
@@ -26,9 +27,7 @@ public class MailManager extends Mailer {
 		addRecipient(user.email);
 		send(user, newpassword);
 	}
- 
 		
-	/*
 	public static void emailWithAttachment(User user) {
 		setSubject("Welcome to Rappli!");
 		addRecipient(user.email);

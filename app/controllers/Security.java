@@ -2,6 +2,8 @@ package controllers;
  
 import models.User;
 import play.Logger;
+
+import play.data.validation.Required;
  
 public class Security extends Secure.Security {
 	
@@ -10,20 +12,22 @@ public class Security extends Secure.Security {
     	Logger.debug("Attempting to auth user: " + user);
     	if (user != null && user.activated) {
     		session.put("userId", String.valueOf(user.id));
+    		session.put("username", email);
+    		session.put("email", email);
+    		//session.put("user", user);
     		return true;
     	}
     	return false;
     }
     
-    /*
-    static void loginHandler(String username, String password) {
-    	if (authenticate(username, password)) {
-    		Home.index((User) User.find("byEmail", username).first());
+    public static void login(@Required String email, @Required String password) {
+    	if (authenticate(email, password)) {
+    		User user = (User) User.find("byEmail", email).first();
+    		Home.index(user);
     	} else {
-    		render("/login");
+    		render("Secure/login.html");
     	}
     }
-    */
     
     static void onDisconnected() {
         session.remove("userId");

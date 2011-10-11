@@ -8,15 +8,24 @@ import util.TokenGenerator;
 import util.EmailValidator;
 import notifiers.MailManager;
 
+import play.mvc.Http.StatusCode;
 import play.data.validation.Required;
 import play.Logger;
 
 public class Users extends Application {
 
+	/**
+	 * Renders the sign-up form.
+	 */
 	public static void signup() {
 		render();
 	}
 	
+	/**
+	 * Handles the POST request from the sign-up form.
+	 * 
+	 * @param email
+	 */
 	public static void signupHandler(@Required String email) {
 		boolean validEmail = EmailValidator.valid(email);
     	User user = User.find("byEmail", email).first();
@@ -27,16 +36,25 @@ public class Users extends Application {
     		Logger.debug("New user being created with email {}, token {}", email, emailToken);
     		user = new User(email, emailToken);
     		user.save();
+    		
     		// send email to user containing welcome copy and tokened activation link.
     		MailManager.signup(user);
+    		//response.status = StatusCode.BAD_REQUEST;
     		render("Users/accountCreated.html", user);
     	} else {
     		// TODO: nicer treatment here
     		Logger.info("Account cannot be created for email: {}", email);
+    		response.status = StatusCode.BAD_REQUEST;
     		render("Users/signup.html");
     	}
 	}
 	
+	/**
+	 * Renders the activation form.
+	 * 
+	 * @param email
+	 * @param emailToken
+	 */
 	public static void activate(String email, String emailToken) {
 		User user = User.find("byEmailAndEmailToken", email, emailToken).first();
 		if (user == null) {
@@ -48,6 +66,16 @@ public class Users extends Application {
 		}
 	}
 	
+	/**
+	 * Handles the POST request from the activate form.
+	 * 
+	 * @param email
+	 * @param emailToken
+	 * @param password
+	 * @param passwordConfirmation
+	 * @param firstName
+	 * @param lastName
+	 */
 	public static void activateHandler(String email, String emailToken, String password, 
 			String passwordConfirmation, String firstName, String lastName) {
 		User user = User.find("byEmailAndEmailToken", email, emailToken).first();
@@ -55,16 +83,16 @@ public class Users extends Application {
 		if (user == null) {
     		// TODO: put this information in the "flash" to inform the user what to do 
     		Logger.info("Account cannot be created for email: {}, token: {}", email, emailToken);
-    		render("Users/signup.html");
+    		signup();
 		} else if (!password.equals(passwordConfirmation)) {
     		// TODO: put this information in the "flash" to inform the user what to do 
-			render("Users/activate.html", user);
+			activate(email, emailToken);
 		} else if (!EmailValidator.valid(email)) {
     		// TODO: put this information in the "flash" to inform the user what to do 
-			render("Users/activate.html", user);
+			activate(email, emailToken);
 		} else if (firstName.isEmpty() || lastName.isEmpty()) {
     		// TODO: put this information in the "flash" to inform the user what to do 
-			render("Users/activate.html", user);
+			activate(email, emailToken);
 		} else {
 			user.setPassword(password);
 			user.firstName = firstName;
@@ -76,11 +104,10 @@ public class Users extends Application {
 		
 		if (authenticated) {
 			Logger.info("Account successfully activated!", user);
-			//render("/", user);
 			Home.index(user);
 		} else {
     		// TODO: put this information in the "flash" to inform the user what to do 
-			render("Users/activate.html", user);
+			activate(email, emailToken);
 		}
 	}
 }

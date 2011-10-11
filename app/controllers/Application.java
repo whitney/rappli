@@ -20,10 +20,9 @@ public class Application extends Controller {
     }
 
     public static User currentUser() {
-    	System.out.println("SESSION" + session.get("userId"));
         if (session.contains("userId")) {
             Long userId = new Long(session.get("userId"));
-            return (userId == null) ? null : (User) User.findById(userId);
+            return (User) User.findById(userId);
         }
         return null;
     }

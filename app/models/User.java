@@ -7,7 +7,10 @@ import play.db.jpa.Model;
 
 @Entity(name = "users")
 public class User extends Model {
-    @Column 
+	
+	private static final int SALT_LEN = 12;
+    
+	@Column 
     public String email;
 	
     @Column(name = "first_name")
