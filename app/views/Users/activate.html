@@ -3,10 +3,22 @@
 	<form method="post" action="/activate">
 		<input type="hidden" name="email" value="${ user.email }" />
 		<input type="hidden" name="emailToken" value="${ user.emailToken }" />
-		<p>password: <input type="password" name="password" /></p>
-		<p>password confirmation: <input type="password" name="passwordConfirmation" /></p>
-		<p>first name: <input type="text" name="firstName" /></p>
-		<p>last name: <input type="text" name="lastName" /></p>
+
+		<p>password: <input type="password" name="password" />
+		<span class="error">#{error 'password' /}</span>
+		</p>
+
+		<p>password confirmation: <input type="password" name="passwordConfirmation" />
+		<span class="error">#{error 'passwordConfirmation' /}</span>
+		</p>
+
+		<p>first name: <input type="text" name="firstName" />
+		<span class="error">#{error 'firstName' /}</span>
+		</p>
+
+		<p>last name: <input type="text" name="lastName" />
+		<span class="error">#{error 'lastName' /}</span>
+		</p>
 		<input type="submit" />
 	</form>
 </div>

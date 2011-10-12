@@ -27,8 +27,15 @@ public class Users extends Application {
 	 * @param email
 	 */
 	public static void signupHandler(@Required String email) {
+		if(validation.hasErrors()) {
+			params.flash(); // add http parameters to the flash scope
+			validation.keep(); // keep the errors for the next request
+		}
+		
 		boolean validEmail = EmailValidator.valid(email);
     	User user = User.find("byEmail", email).first();
+    	Logger.debug("validEmail: " + validEmail);
+    	Logger.debug("user: " + user);
     	
     	if (validEmail && user == null) {
     		TokenGenerator tokenGen = new TokenGenerator();
@@ -43,6 +50,7 @@ public class Users extends Application {
     		render("Users/accountCreated.html", user);
     	} else {
     		// TODO: nicer treatment here
+    		validation.email("email", email);
     		Logger.info("Account cannot be created for email: {}", email);
     		response.status = StatusCode.BAD_REQUEST;
     		render("Users/signup.html");
@@ -55,7 +63,7 @@ public class Users extends Application {
 	 * @param email
 	 * @param emailToken
 	 */
-	public static void activate(String email, String emailToken) {
+	public static void activate(@Required String email, @Required String emailToken) {
 		User user = User.find("byEmailAndEmailToken", email, emailToken).first();
 		if (user == null) {
     		// TODO: put this information in the "flash" to inform the user what to do 
@@ -76,8 +84,14 @@ public class Users extends Application {
 	 * @param firstName
 	 * @param lastName
 	 */
-	public static void activateHandler(String email, String emailToken, String password, 
-			String passwordConfirmation, String firstName, String lastName) {
+	public static void activateHandler(@Required String email, @Required String emailToken, 
+										@Required String password, @Required String passwordConfirmation, 
+										@Required String firstName, @Required String lastName) {
+		if(validation.hasErrors()) {
+			params.flash(); // add http parameters to the flash scope
+			validation.keep(); // keep the errors for the next request
+		}
+		
 		User user = User.find("byEmailAndEmailToken", email, emailToken).first();
 		boolean authenticated = false;
 		if (user == null) {

@@ -1,6 +1,8 @@
 <div align="left">
 	<form method="post" action="/signup">
-		<p>email: <input type="text" name="email" /></p>
+		<p>email: <input type="text" name="email" value="${flash['user.email']}" />
+		<span class="error">#{error 'email' /}</span>
+		</p>
 		<!--
 		<p>password: <input type="password" name="password" /></p>
 		<p>password confirmation: <input type="password" name="password_confirmation" /></p>
