@@ -11,11 +11,24 @@
 		].join(""),
 
 		/**
+		 * Current date.
+		 */
+		TODAY = new Date(),
+
+		/**
 		 * RegEx for extracting the price from a title.
 		 */
 		RX_PRICE = /\$([0-9]+)/,
 
+		/**
+		 * RegEx for extracting the post id from a url.
+		 */
 		RX_POST_ID = /([0-9]+)\.html/,
+
+		/**
+		 * RegEx for extracting the post date.
+		 */
+		RX_POST_DATE = /\w{3}\s\d+\s-/,
 
 		/**
 		 * A channel for communicating with the extension
@@ -36,8 +49,9 @@
 		function Listing(element) {
 			this.__elem__ = element;
 			this.data = {};
-			this.extractPostTitleAndUrl();
+			this.extractPostDate();
 			this.extractPrice();
+			this.extractPostTitleAndUrl();
 			this.extractPostId();
 		}
 
@@ -61,10 +75,31 @@
 			var postId;
 
 			if (RX_POST_ID.test(this.data.postUrl)) {
+				console.log('found');
 				postId = parseInt(this.data.postUrl.match(RX_POST_ID)[1]);
 			}
 			this.data.postId = postId;
 		}
+
+		// We must assume that if the date is not part of the post text, it is
+		// the date in the H4 tag preceding the listing.
+		Listing.prototype.extractPostDate = function () {
+			var postDate,
+				nodes = this.__elem__.childNodes;
+
+			if (nodes[0].nodeType === 3) {
+				var dateText = nodes[0].textContent.replace(" - ", "");
+				dateText += " " + TODAY.getFullYear();
+				dateText = $.trim(dateText);
+				postDate = new Date(dateText);
+			} else { 
+				var dateText = $(this.__elem__).prevAll('h4').text();
+				dateText += " " + TODAY.getFullYear();
+				postDate = new Date(dateText);
+			}
+			console.log(postDate);
+			this.data.postDate = postDate;
+		};
 
 		return Listing;
 	}());
@@ -82,7 +117,6 @@
 		$(postElem).addClass("item-queued");
 
 		window.sessionStorage[listing.data.postId] = listingJSON;
-		console.log(listingJSON, listing);
 		$.post("http://localhost:9000/craigslist/listings", {
 			"url": listing.data.postUrl
 		});

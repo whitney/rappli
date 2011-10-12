@@ -1,18 +1,23 @@
+<html>
+<head>
+</head>
+<body>
+</body>
 <script>
-	(function () {
-		chrome.extension.onConnect.addListener(function(port) {
-			console.assert(port.name == "rapply");
-			port.onMessage.addListener(function(msg) {
-				if (msg.action === "newTab") {
-					var tabOptions = {
-						url: "http://localhost:9000/digest"
-					};
-					chrome.tabs.create(tabOptions, function () {
-					});
+(function ($) {
+	chrome.extension.onConnect.addListener(function(port) {
+		port.onMessage.addListener(function(msg) {
+			if (msg.action === "newTab") {
+				console.log('open a new tab');
+				var tabOptions = {
+					url: "http://localhost:9000/craigslist/listings/digest"
+				};
+				//chrome.tabs.create(tabOptions, function () {
 				});
-			});
+			}
 		});
 	});
-
-	})();
+}());
 </script>
+</html>
+
