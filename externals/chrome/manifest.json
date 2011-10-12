@@ -4,13 +4,15 @@
 	"description": "Help you find and manage apartment listings.",
 	"background_page": "rapply.html",
 	"browser_action": {
+		"default_popup": "rapply.html"
 	},
 	"permissions": [
 		"tabs",
 		"notifications",
 		"unlimitedStorage",
 		"http://*.craigslist.org*", 
-		"http://localhost:9000/crg/*"
+		"http://localhost:9000/craigslist/*",
+		"<all_urls>"
 	],
 	"content_scripts": [
 	{
