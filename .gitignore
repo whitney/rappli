@@ -1,5 +1,6 @@
 /tmp
 /eclipse
+/modules
 external
 *.pyc
 *.swp
