@@ -1,8 +1,17 @@
 #{extends 'main.html' /}
 #{set title: 'Review your listings' /}
+#{set 'moreScripts'}
+	#{script 'jquery.isotope.min.js' /}
+	#{script 'digest.js' /}
+#{/set}
 
-<ul>
-    #{list items:listings, as:'listing'}
-	<li>${listing.url} - ${listing.title}</li>
-    #{/list}
-</ul>
+<div id="digest">
+	#{list items:listings, as:'listing'}
+		<div class="listing">
+			<div class="title-bar">
+				<a class="cg-listing" href=${listing.url} target="_blank">${listing.title}</a>
+				<div class="star"></div>
+			</div>
+		</div>
+	#{/list}
+</div>

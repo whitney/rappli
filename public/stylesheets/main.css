@@ -1,0 +1,17 @@
+body
+	{ background: transparent url("../images/soft_wallpaper.png") repeat; }
+#digest
+	{ width: 100% position: relative; }
+
+.listing
+	{ background: #fff; border: 1px solid #767676; width: 275px; height: 350px; margin: 20px 0 20px 20px; border-radius: 5px; width: 1200px; } 
+
+.listing .title-bar
+	{ background: #88A2B7; border-bottom: 1px solid #C5D5DD; padding: 5px 20px 5px 20px; border-top-left-radius: 5px; border-top-right-radius: 5px; }
+
+.listing .title-bar .star
+	{ background: gray; width: 15px; height: 15px; display: block; border-radius: 15px; float: right; }
+
+.listing.starred .star
+	{ background: yellow; }
+

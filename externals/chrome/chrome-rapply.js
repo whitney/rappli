@@ -21,6 +21,21 @@
 		RX_PRICE = /\$([0-9]+)/,
 
 		/**
+		 * RegEx for extracting the # of bedrooms.
+		 */
+		RX_BR = /(\d+)br|BR|bR|Br/,
+
+		/**
+		 * RegEx for extracting the # bathrooms.
+		 */
+		RX_BA = /(\d+)ba|BA|bA|Ba/,
+
+		/**
+		 * RegEx for extracting the dimensions.
+		 */
+		RX_SIZE = /(\d+)ft|FT|fT|Ft/,
+
+		/**
 		 * RegEx for extracting the post id from a url.
 		 */
 		RX_POST_ID = /([0-9]+)\.html/,
@@ -50,9 +65,10 @@
 			this.__elem__ = element;
 			this.data = {};
 			this.extractPostDate();
-			this.extractPrice();
 			this.extractPostTitleAndUrl();
+			this.extractPrice();
 			this.extractPostId();
+			this.extractSpecs();
 		}
 
 		Listing.prototype.extractPostTitleAndUrl = function () {
@@ -60,6 +76,28 @@
 			this.data.postTitle = title.text;
 			this.data.postUrl = title.href;
 		}
+
+		Listing.prototype.extractSpecs = function () {
+			var br, ba, size;
+
+			if (RX_BR.test(this.data.postTitle)) {
+				br = this.data.postTitle.match(RX_BR)[1];
+			}
+
+			if (RX_BA.test(this.data.postTitle)) {
+				ba = this.data.postTitle.match(RX_BA)[1];
+			}
+
+			if (RX_SIZE.test(this.data.postTitle)) {
+				size = this.data.postTitle.match(RX_SIZE)[1];
+			}
+
+			this.data.specs = {
+				'br': br,
+				'ba': ba,
+				'size': size
+			};
+		};
 
 		Listing.prototype.extractPrice = function () {
 			var price;
@@ -75,7 +113,6 @@
 			var postId;
 
 			if (RX_POST_ID.test(this.data.postUrl)) {
-				console.log('found');
 				postId = parseInt(this.data.postUrl.match(RX_POST_ID)[1]);
 			}
 			this.data.postId = postId;
@@ -91,13 +128,12 @@
 				var dateText = nodes[0].textContent.replace(" - ", "");
 				dateText += " " + TODAY.getFullYear();
 				dateText = $.trim(dateText);
-				postDate = new Date(dateText);
+				postDate = new Date(dateText).getTime();
 			} else { 
 				var dateText = $(this.__elem__).prevAll('h4').text();
 				dateText += " " + TODAY.getFullYear();
-				postDate = new Date(dateText);
+				postDate = new Date(dateText).getTime();
 			}
-			console.log(postDate);
 			this.data.postDate = postDate;
 		};
 
@@ -111,15 +147,23 @@
 	function queueListing(e) {
 		var postElem = $(this).parents('p')[0],
 			listing = new Listing(postElem), 
-			listingJSON = JSON.stringify(listing.data);
+			listingJSON = JSON.stringify(listing.data),
+			postId = listing.data.postId;
 
 		listing.__elem__.id = listing.data.postId;
 		$(postElem).addClass("item-queued");
 
-		window.sessionStorage[listing.data.postId] = listingJSON;
-		$.post("http://localhost:9000/craigslist/listings", {
-			"url": listing.data.postUrl
+		console.log(listing);
+		sessionStorage.setItem(postId, listingJSON);
+
+		$.ajax({
+			url: "http://localhost:9000/craigslist/listings",
+			type: "POST",
+			dataType: "application/json",
+			contentType: "application/json",
+			data: listingJSON
 		});
+
 		chan.postMessage({action: "newTab"});
 		return false;
 	}
@@ -127,7 +171,7 @@
 	function dequeueListing(e) {
 		var postElem = $(this).parents('p')[0], 
 			postId = postElem.id, 
-			listingUrl = JSON.parse(window.sessionStorage[postId]).postUrl;
+			listingUrl = JSON.parse(sessionStorage.getItem(postId)).postUrl;
 
 		$.ajax({
 			url: "http://localhost:9000/craigslist/listings",
@@ -136,7 +180,7 @@
 			data: {url: listingUrl},
 			success: function(){
 				$(this).removeClass("item-queued");
-				delete window.sessionStorage[postId];
+				sessionStorage.removeItem(postId);
 			}
 		});
 		return false;
@@ -154,11 +198,7 @@
 		postId = parseInt(urlFragments[urlFragments.length - 1]
 				.replace(".html", ""));
 
-		if (window.sessionStorage.hasOwnProperty(postId)) {
-			return true;
-		} else { 
-			return false;
-		}
+		return sessionStorage.getItem(postId) ? true : false;
 	}
 
 	function rapplify() {

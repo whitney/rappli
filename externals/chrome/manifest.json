@@ -31,40 +31,26 @@
 			"http://*.craigslist.org/search/fee*",
 			"http://*.craigslist.org/search/nfa*",
 			"http://*.craigslist.org/search/aiv*",
+			"http://*.craigslist.org/search/hhh*",
 
-			"http://*.craigslist.org/roo/*", 
-			"http://*.craigslist.org/sub/*", 
-			"http://*.craigslist.org/hsw/*", 
-			"http://*.craigslist.org/swp/*", 
-			"http://*.craigslist.org/vac/*",
-			"http://*.craigslist.org/prk/*",
-			"http://*.craigslist.org/off/*",
-			"http://*.craigslist.org/rea/*",
-			"http://*.craigslist.org/aap/*",
-			"http://*.craigslist.org/abo/*",
-			"http://*.craigslist.org/nfb/*",
-			"http://*.craigslist.org/fee/*",
-			"http://*.craigslist.org/nfa/*",
-			"http://*.craigslist.org/aiv/*",
-
-			"http://*.craigslist.org/*roo*", 
-			"http://*.craigslist.org/*sub*", 
-			"http://*.craigslist.org/*hsw*", 
-			"http://*.craigslist.org/*swp*", 
-			"http://*.craigslist.org/*vac*",
-			"http://*.craigslist.org/*prk*",
-			"http://*.craigslist.org/*off*",
-			"http://*.craigslist.org/*rea*",
-			"http://*.craigslist.org/*aap*",
-			"http://*.craigslist.org/*abo*",
-			"http://*.craigslist.org/*nfb*",
-			"http://*.craigslist.org/*fee*",
-			"http://*.craigslist.org/*nfa*",
-			"http://*.craigslist.org/*aiv*"
+			"http://*.craigslist.org/*hhh*/", 
+			"http://*.craigslist.org/*roo*/", 
+			"http://*.craigslist.org/*sub*/", 
+			"http://*.craigslist.org/*hsw*/", 
+			"http://*.craigslist.org/*swp*/", 
+			"http://*.craigslist.org/*vac*/",
+			"http://*.craigslist.org/*prk*/",
+			"http://*.craigslist.org/*off*/",
+			"http://*.craigslist.org/*rea*/",
+			"http://*.craigslist.org/*aap*/",
+			"http://*.craigslist.org/*abo*/",
+			"http://*.craigslist.org/*nfb*/",
+			"http://*.craigslist.org/*fee*/",
+			"http://*.craigslist.org/*nfa*/",
+			"http://*.craigslist.org/*aiv*/"
 		],
 		"js": ["jquery-1.6.4.min.js", "chrome-rapply.js"],
 		"css": ["chrome-rapply.css"]
-	}]
-	
+	}] 
 }
 
