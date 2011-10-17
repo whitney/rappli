@@ -3,6 +3,8 @@ package models;
 import org.mindrot.jbcrypt.BCrypt;
 import java.util.*;
 import javax.persistence.*;
+
+import play.Logger;
 import play.db.jpa.Model;
 
 @Entity(name = "users")
@@ -54,11 +56,18 @@ public class User extends Model {
     }
     
     public static User connect(String email, String candidatePw) {
+    	Logger.info(">>> email: " + email);
+    	Logger.info(">>> candidatePw: " + candidatePw);
     	if (email == null || candidatePw == null)
     		return null;
     	User user = find("byEmail", email).first();
+    	
+    	Logger.info(">>> user: " + user);
+    	
     	if (user == null)
     		return null;
+    	
+    	Logger.info(">>> checkpw: " + BCrypt.checkpw(candidatePw, user.password));
     	if (BCrypt.checkpw(candidatePw, user.password))
     		return user;
     	else

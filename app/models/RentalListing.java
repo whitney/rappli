@@ -15,6 +15,13 @@ public class RentalListing extends Model {
     @Lob
     public String html;
 	
+    @Column 
+    public String price;
+    
+    @ManyToOne
+    @JoinColumn(name="listing_source_id")
+	public ListingSource listingSource;
+    
     @OneToMany(mappedBy="rentalListing", cascade=CascadeType.ALL)
 	public List<UserListing> userListings;
     

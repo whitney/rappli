@@ -9,7 +9,7 @@ public class Security extends Secure.Security {
 	
     static boolean authenticate(String email, String password) {
     	User user = User.connect(email, password);
-    	Logger.debug("Attempting to auth user: " + user);
+    	Logger.debug(">>> Attempting to auth user: " + user);
     	if (user != null && user.activated) {
     		session.put("userId", String.valueOf(user.id));
     		session.put("username", email);
