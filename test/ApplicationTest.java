@@ -13,5 +13,24 @@ public class ApplicationTest extends FunctionalTest {
         assertContentType("text/html", response);
         assertCharset(play.Play.defaultWebEncoding, response);
     }
+
+    // TODO: handle redirects
+    /*
+    @Test
+    public void testThatLogoutPageWorks() {
+        Response response = GET("/logout");
+        assertIsOk(response);
+        assertContentType("text/html", response);
+        assertCharset(play.Play.defaultWebEncoding, response);
+    }
+    */
+    
+    @Test
+    public void testThatSignupPageWorks() {
+        Response response = GET("/signup");
+        assertIsOk(response);
+        assertContentType("text/html", response);
+        assertCharset(play.Play.defaultWebEncoding, response);
+    }
     
 }
