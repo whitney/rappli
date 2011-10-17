@@ -45,10 +45,10 @@ public class UserTest extends UnitTest {
 	    // Create a new rental-listing
 		String url = "http://newyork.craigslist.org/brk/abo/2627480745.html";
 		String html = "<html>blah blah blah</html>";
-	    RentalListing rentalListing1 = new RentalListing(url, html).save();
+	    RentalListing rentalListing1 = new RentalListing(url, html, "890.00").save();
 		url = "http://brooklyn.craigslist.org/brk/abo/2627480745.html";
 		html = "<html>wah wah wah</html>";
-	    RentalListing rentalListing2 = new RentalListing(url, html).save();
+	    RentalListing rentalListing2 = new RentalListing(url, html, "2000.00").save();
 	 
 	    // add a couple of listings
 	    bob.addListing(rentalListing1);

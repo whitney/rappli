@@ -25,9 +25,10 @@ public class RentalListing extends Model {
     @OneToMany(mappedBy="rentalListing", cascade=CascadeType.ALL)
 	public List<UserListing> userListings;
     
-    public RentalListing(String url, String html) {
+    public RentalListing(String url, String html, String price) {
         this.url = url;
         this.html = html;
+        this.price = price;
         this.userListings = new ArrayList<UserListing>();
     }
     
