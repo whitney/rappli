@@ -1,12 +1,14 @@
 package models;
 
+import play.db.jpa.Model;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity(name = "unauthed_users_listings")
-public class UnauthedUserListing {
+public class UnauthedUserListing extends Model {
 	
 	@Column(name = "IPv4_address")
     public int ipAddress;
