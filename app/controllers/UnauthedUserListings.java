@@ -11,8 +11,8 @@ public class UnauthedUserListings extends Application {
 		// check if rental listing record already exists...
 		// if it doesn't exist then create it, 
 		// then add the rentalListing record to the unauthed_users_listings table.
-		RentalListing rentalListing = new RentalListing(url, html, "950");
-		rentalListing.save();
+		//RentalListing rentalListing = new RentalListing(url, html, "950");
+		//rentalListing.save();
 		
 		String ipv4 = request.remoteAddress;
 		

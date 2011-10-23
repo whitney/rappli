@@ -16,8 +16,12 @@ public class RentalListing extends Model {
     public String html;
 	
     @Column 
-    public String price;
+    public int price;
     
+    @Column
+    public String title;
+    
+   
     @ManyToOne
     @JoinColumn(name="listing_source_id")
 	public ListingSource listingSource;
@@ -25,8 +29,9 @@ public class RentalListing extends Model {
     @OneToMany(mappedBy="rentalListing", cascade=CascadeType.ALL)
 	public List<UserListing> userListings;
     
-    public RentalListing(String url, String html, String price) {
+    public RentalListing(String url, String title, String html, int price) {
         this.url = url;
+        this.title = title;
         this.html = html;
         this.price = price;
         this.userListings = new ArrayList<UserListing>();
