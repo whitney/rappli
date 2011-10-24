@@ -1,8 +1,28 @@
 #{extends 'main.html' /}
 #{set title: 'Review your listings' /}
+#{set 'moreScripts'}
+    #{script 'digest.js' /}
+#{/set}
 
-<ul>
+<div id="user-nav"></div>
+<div id="digest">
     #{list items:listings, as:'listing'}
-	<li>${listing.url} - ${listing.title}</li>
+        <div class="listing">
+            <div class="title-bar">
+                <a class="cg-listing" href=${listing.postUrl} target="_blank">${listing.postTitle}</a>
+                <div class="star"></div>
+            </div>
+            <div class="content">
+                <div class="post-body">
+                    #{verbatim}${listing.html}#{/verbatim}
+                </div>
+                <div class="post-images clearfix">
+                    #{list items:listing.imgUrls, as:'imgUrl'}
+                     <img src=${imgUrl} class="thumbnail" />
+                    #{/list}
+                </div>
+            </div>
+
+        </div>
     #{/list}
-</ul>
+</div>

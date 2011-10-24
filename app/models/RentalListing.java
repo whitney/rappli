@@ -20,8 +20,9 @@ public class RentalListing extends Model {
     @Lob
     public String html;
 	
+    // this represents a whole dollar amount in USD
     @Column 
-    public String price;
+    public int price;
     
     @ManyToOne
     @JoinColumn(name="listing_source_id")
@@ -34,7 +35,7 @@ public class RentalListing extends Model {
 	@Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
 	public DateTime createdAt;
     
-    public RentalListing(String url, String html, String price) {
+    public RentalListing(String url, String html, int price) {
         this.url = url;
         this.html = html;
         this.price = price;

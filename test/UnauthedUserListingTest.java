@@ -23,13 +23,13 @@ public class UnauthedUserListingTest extends UnitTest {
 	public void createAndRetrieveUnauthedUserListings() throws UnknownHostException {
 		String url0 = "http://newyork.craigslist.org/brk/abo/2627480745.html";
 		String html0 = "<html>blah blah blah</html>";
-		String price0 = "2500.00";
+		int price0 = 2500;
 	    // Create a new listing and save it
 	    RentalListing apt0 = new RentalListing(url0, html0, price0).save();
 	    
 		String url1 = "http://brooklyn.craigslist.org/brk/abo/2627480745.html";
 		String html1 = "<html>meh, meh, meh</html>";
-		String price1 = "7500.00";
+		int price1 = 7500;
 	    RentalListing apt1 = new RentalListing(url1, html1, price1).save();
 	    
 	    String ip = "127.0.0.1";

@@ -10,13 +10,29 @@ import java.util.*;
 @Entity
 public class CraigslistListing extends Model {
 
-		@Required
-		public String title;
-		@Required
-		public String url;
-		@Required
-		public Long postId;
-		@Required 
-		public String email;
-		public int price;
+	private static final String source = "craigslist";
+
+	@Required
+	public String postUrl;
+	
+	@Required
+	public String postTitle;
+	
+	@Required
+	public String html;
+	
+	@Required
+	public int postPrice;
+	
+	@Required 
+	public String contactEmail;
+	
+	public ArrayList<String> imgUrls;
+	/*
+	public CraigslistListing(String postUrl, String title, String html, int price) {
+		super(postUrl, title, html, price);
+		// TODO Auto-generated constructor stub
+	}
+	*/
+
 }

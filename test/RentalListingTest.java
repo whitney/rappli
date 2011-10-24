@@ -15,7 +15,7 @@ public class RentalListingTest extends UnitTest {
 	public void createAndRetrieveRentalListing() {
 		String url = "http://newyork.craigslist.org/brk/abo/2627480745.html";
 		String html = "<html>blah blah blah</html>";
-		String price = "2500.00";
+		int price = 2500;
 		
 	    // Create a new listing and save it
 	    new RentalListing(url, html, price).save();
