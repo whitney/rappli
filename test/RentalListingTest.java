@@ -26,7 +26,9 @@ public class RentalListingTest extends UnitTest {
 	    // Test 
 	    assertNotNull(apt);
 	    assertEquals(url, apt.url);
+	    assertEquals(html, apt.html);
 	    assertEquals(price, apt.price);
+	    assertNotNull(apt.createdAt);
 	}
 
 }

@@ -1,5 +1,10 @@
 package models;
 
+import org.joda.time.contrib.hibernate.PersistentDateTime;
+import org.joda.time.DateTime;
+
+import org.hibernate.annotations.Type;
+
 import java.net.InetAddress;
 import java.util.List;
 
@@ -19,10 +24,15 @@ public class UnauthedUserListing extends Model {
 	@ManyToOne
 	@JoinColumn(name="rental_listing_id")
     public RentalListing rentalListing;
+	
+	@Column(name = "created_at")
+	@Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
+	public DateTime addedOn;
     
     public UnauthedUserListing(InetAddress address, RentalListing rentalListing) {
         this.ipAddress = inetToLong(address);
         this.rentalListing = rentalListing;
+        this.addedOn = new DateTime();
     }
     
     public static List<UnauthedUserListing> findByIp(InetAddress address) {

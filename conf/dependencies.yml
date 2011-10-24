@@ -8,4 +8,4 @@ require:
     - play -> redis 0.2
     - org.jsoup -> jsoup 1.6.1
     - org.mindrot -> jbcrypt 0.3m
-
+    - joda-time -> joda-time-hibernate 1.3

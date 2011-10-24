@@ -1,11 +1,12 @@
 import org.junit.*;
+
 import java.util.*;
 import play.test.*;
 import models.User;
 import models.RentalListing;
 import models.UserListing;
 
-public class UserTest extends UnitTest {
+public class UserListingTest extends UnitTest {
 
     @Before
     public void setup() {
@@ -13,33 +14,8 @@ public class UserTest extends UnitTest {
     }
     
 	@Test
-	public void createAndRetrieveUser() {
-	    // Create a new user and save it
-	    new User("bob@gmail.com", "Bob", "Zoller", "psswd", true).save();
-	    
-	    // Retrieve the user with email address bob@gmail.com
-	    User bob = User.find("byEmail", "bob@gmail.com").first();
-	    
-	    // Test 
-	    assertNotNull(bob);
-	    assertEquals("Bob", bob.firstName);
-	}
-	
-	@Test
-	public void testAuth() {
-	    // Create a new user and save it
-	    new User("bill@gmail.com", "Bill", "Zoller", "bsswd", true).save();
-	    
-	    // Test 
-	    // TODO: fix this test!
-	    //assertNotNull(User.connect("bill@gmail.com", "bsswd"));
-	    assertNull(User.connect("bill@gmail.com", "badpassword"));
-	    assertNull(User.connect("tom@gmail.com", "bsswd"));
-	}
-	
-	@Test
-	public void testUserListingRelation() {
-	    // Create a new user and save it
+	public void testCreateFetchDestroy() {
+		
 	    User bob = new User("bob@gmail.com", "Bob", "Zoller", "psswd", true).save();
 	 
 	    // Create a new rental-listing
@@ -55,14 +31,17 @@ public class UserTest extends UnitTest {
 	    bob.addListing(rentalListing2);
 	 
 	    // Count things
-	    assertEquals(1, User.count());
-	    assertEquals(2, RentalListing.count());
 	    assertEquals(2, UserListing.count());
 	 
 	    // Retrieve one of Bob's listings
-	    // TODO: move this to its own UserListingTest
 	    UserListing bobListing = UserListing.find("byUser", bob).first();
+	    assertNotNull(bobListing);
+	    assertNotNull(bobListing.user);
+	    assertNotNull(bobListing.rentalListing);
+	    assertNotNull(bobListing.createdAt);
 	 
+	    assertEquals(url, bob.listings.get(1).rentalListing.url);
+	    
 	    // Delete one of Bob's listings
 	    bobListing.delete();
 	    // Check count
@@ -75,7 +54,6 @@ public class UserTest extends UnitTest {
 	    // Check that all user-listings have been deleted
 	    assertEquals(1, User.count());
 	    assertEquals(0, UserListing.count());
-	    assertEquals(0, RentalListing.count());
 	}
 
 }
