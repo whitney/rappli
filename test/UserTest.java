@@ -22,6 +22,7 @@ public class UserTest extends UnitTest {
 	    
 	    // Test 
 	    assertNotNull(bob);
+	    assertNotNull(bob.createdAt);
 	    assertEquals("Bob", bob.firstName);
 	}
 	

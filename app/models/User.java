@@ -1,6 +1,10 @@
 package models;
 
+import org.joda.time.contrib.hibernate.PersistentDateTime;
+import org.joda.time.DateTime;
 import org.mindrot.jbcrypt.BCrypt;
+import org.hibernate.annotations.Type;
+
 import java.util.*;
 import javax.persistence.*;
 
@@ -33,6 +37,10 @@ public class User extends Model {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	public List<UserListing> listings;
     
+	@Column(name = "created_at")
+	@Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
+	public DateTime createdAt;
+    
     public User(String email, String firstName, String lastName, String password, boolean activated) {
         this.email = email;
         this.firstName = firstName;
@@ -40,6 +48,7 @@ public class User extends Model {
         this.password = BCrypt.hashpw(password, BCrypt.gensalt());
         this.activated = activated;
         this.listings = new ArrayList<UserListing>();
+        this.createdAt = new DateTime();
     }
     
     public User(String email, String emailToken) {
@@ -47,6 +56,7 @@ public class User extends Model {
         this.activated = false;
         this.emailToken = emailToken;
         this.listings = new ArrayList<UserListing>();
+        this.createdAt = new DateTime();
     }
     
     public User addListing(RentalListing rentalListing) {
